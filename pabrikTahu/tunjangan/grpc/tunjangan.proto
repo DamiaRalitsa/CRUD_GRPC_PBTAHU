@@ -1,0 +1,65 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+package grpc;
+
+message AddTunjanganReq{
+    int64 IDTunjangan=1;
+    string DeskripsiTunjangan=2;
+    int64 BesaranTunjangan=3;
+    int32 Status=4;
+    string CreatedBy=5;
+    string CreatedOn=6;
+    string UpdatedOn=7;
+    string UpdatedBy=8;
+}
+
+message ReadTunjanganByNamaReq{ 
+    string DeskripsiTunjangan=1;
+}
+
+message ReadTunjanganByNamaResp{
+    int64 IDTunjangan=1;
+    string DeskripsiTunjangan=2;
+    int64 BesaranTunjangan=3;
+    int32 Status=4;
+    string CreatedBy=5;
+    string CreatedOn=6;
+    string UpdatedOn=7;
+    string UpdatedBy=8;
+}
+
+
+message ReadTunjanganResp{
+    repeated ReadTunjanganByNamaResp allTunjangan=1;
+}
+
+message UpdateTunjanganReq{
+    int64 IDTunjangan=1;
+    string DeskripsiTunjangan=2;
+    int64 BesaranTunjangan=3;
+    int32 Status=4;
+    string CreatedBy=5;
+    string CreatedOn=6;
+    string UpdatedOn=7;
+    string UpdatedBy=8;
+}
+
+//message ReadTunjanganByEmailReq{
+   // string email=1;
+//}
+
+//message ReadKotaByEmailResp{
+  //  int64 IDKota=1;
+    //string NamaKota=2;
+   // int32 status=3;
+//}
+
+service TunjanganService{
+    rpc AddTunjangan(AddTunjanganReq) returns (google.protobuf.Empty) {};
+    rpc ReadTunjanganByNama(ReadTunjanganByNamaReq) returns (ReadTunjanganByNamaResp) {};
+    rpc ReadTunjangan(google.protobuf.Empty) returns (ReadTunjanganResp){};
+    rpc UpdateTunjangan(UpdateTunjanganReq) returns (google.protobuf.Empty){};
+   // rpc ReadKotaByEmail(ReadKotaByEmailReq) returns (ReadKotaByEmailResp){};
+}

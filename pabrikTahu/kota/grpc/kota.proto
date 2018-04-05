@@ -1,0 +1,62 @@
+syntax="proto3";
+
+import "google/protobuf/empty.proto";
+
+package grpc;
+
+message AddKotaReq{
+    int64 IDKota=1;
+    string NamaKota=2;
+    int32 Status=3;
+    string CreatedBy=4;
+    string CreatedOn=5;
+    string UpdatedOn=6;
+    string UpdatedBy=7;
+}
+
+message ReadKotaByNamaReq{ 
+    string NamaKota=1;
+}
+
+message ReadKotaByNamaResp{
+    int64 IDKota=1;
+    string NamaKota=2;
+    int32 Status=3;
+    string CreatedBy=4;
+    string CreatedOn=5;
+    string UpdatedOn=6;
+    string UpdatedBy=7;
+}
+
+
+message ReadKotaResp{
+    repeated ReadKotaByNamaResp allKota=1;
+}
+
+message UpdateKotaReq{
+    int64 IDKota=1;
+    string NamaKota=2;
+    int32 Status=3; 
+    string CreatedBy=4;
+    string  CreatedOn=5;
+    string  UpdatedOn=6;
+    string UpdatedBy=7;
+}
+
+//message ReadKotaByEmailReq{
+   // string email=1;
+//}
+
+//message ReadKotaByEmailResp{
+  //  int64 IDKota=1;
+    //string NamaKota=2;
+   // int32 status=3;
+//}
+
+service KotaService{
+    rpc AddKota(AddKotaReq) returns (google.protobuf.Empty) {};
+    rpc ReadKotaByNama(ReadKotaByNamaReq) returns (ReadKotaByNamaResp) {};
+    rpc ReadKota(google.protobuf.Empty) returns (ReadKotaResp){};
+    rpc UpdateKota(UpdateKotaReq) returns (google.protobuf.Empty){};
+   // rpc ReadKotaByEmail(ReadKotaByEmailReq) returns (ReadKotaByEmailResp){};
+}
